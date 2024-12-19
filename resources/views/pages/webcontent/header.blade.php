@@ -50,7 +50,15 @@
                     </li>
                 </ul>
             </div>
-
+            <div class="box">
+                <form action="{{ URL::to('/tim-kiem') }}" method="POST" id="searchForm">
+                    @csrf
+                <input type="text" name="keywords_submit" placeholder="Search">
+                <a>
+                    <i class="fa fa-search" id="searchButton"></i>
+                </a>
+                </form>
+            </div>
 
         </nav>
     </div>

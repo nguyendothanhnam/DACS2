@@ -5,7 +5,7 @@
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <!-- Slide with Images -->
-                    <div class="swiper-slide">
+                    {{-- <div class="swiper-slide">
                         <img src="https://sp-one.vn/Content/uploads/2024/08/z5774923877982_ff5b6b1d35813626f5a6ba78cbb56d08.jpg" alt="Image 1">
                     </div>
                     <div class="swiper-slide">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="swiper-slide">
                         <img src="https://sp-one.vn/Content/uploads/2023/06/banner-ao-hoa_web.png" alt="Image 4">
-                    </div>
+                    </div> --}}
                 </div>
                 <!-- Navigation buttons -->
                 <div class="swiper-button-next"></div>

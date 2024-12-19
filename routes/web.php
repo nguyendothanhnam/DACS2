@@ -17,6 +17,7 @@ use App\Http\Controllers\UserController;
 //Frontend
 Route::get('/trang-chu', [HomeController::class, 'showlayoutproduct']);
 Route::get('/', [HomeController::class, 'showlayoutproduct']);
+Route::post('/tim-kiem',[HomeController::class,'search']);
 // tra ve tab san pham
 Route::get('/san-pham', [HomeController::class, 'index']);
 Route::post('/tim-kiem',[HomeController::class,'search']);

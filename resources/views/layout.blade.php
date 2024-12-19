@@ -17,7 +17,8 @@
     <title>LapWibu</title>
 
     <link rel="stylesheet" href="{{ asset('./frontend/css/index.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('./frontend/css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -49,6 +50,14 @@
     <script src="{{ asset('frontend/js/main.js') }}"></script>
 
     <script src="{{ asset('./frontend/js/main.js') }}"></script>
+
+    {{-- Search --}}
+    <script>
+        $('#searchButton').click(function() {
+            $('#searchForm').submit();
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
