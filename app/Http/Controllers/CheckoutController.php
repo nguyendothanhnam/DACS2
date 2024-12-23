@@ -50,7 +50,7 @@ class CheckoutController extends Controller
     }
 
     public function checkout(Request $request){
-
+       
         $cate_product = DB::table('tbl_category_product')->where('category_status','0')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->where('brand_status','0')->orderby('brand_id', 'desc')->get();
         
@@ -185,11 +185,12 @@ class CheckoutController extends Controller
     public function select_delivery_home(Request $request){
         $data = $request->all();
         if ($request->action == 'city') {
-            $select_province = Province::where('matp', $data['ma_id'])->orderBy('maqh', 'ASC')->get();
+            $select_province = Province::where('matp', (string)$data['ma_id'])->orderBy('maqh', 'ASC')->get();
             $output = '<option value="">--- Chọn quận huyện ---</option>';
             foreach ($select_province as $key => $province) {
                 $output .= '<option value="' . $province->maqh . '">' . $province->name_quanhuyen . '</option>';
             }
+            
             echo $output;
         } elseif ($request->action == 'province') {
             $select_wards = Wards::where('maqh', $data['ma_id'])->orderBy('xaid', 'ASC')->get();
@@ -203,10 +204,15 @@ class CheckoutController extends Controller
 
     public function calculate_fee(Request $request){
         $data = $request->all();
+        // dd($data);
         if($data['matp']){
+            // $feeship = Feeship::where('fee_matp', $data['matp'])
+            // ->where('fee_maqh', $data['maqh'])
+            // ->where('fee_xaid', $data['xaid'])->get();
             $feeship = Feeship::where('fee_matp', $data['matp'])
-            ->where('fee_maqh', $data['maqh'])
-            ->where('fee_xaid', $data['xaid'])->get();
+                  ->where('fee_maqh', $data['maqh'])
+                  ->where('fee_xaid', $data['xaid'])
+                  ->get();
             if($feeship){
                 $count_feeship = $feeship->count();
                 if($count_feeship>0){

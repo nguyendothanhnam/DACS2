@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Trang quản lý Admin</title>
+    <title>Đăng ký Auth</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords"
@@ -19,12 +19,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="main">
         <input type="checkbox" id="chk" aria-hidden="true">
         <div class="signup">
-            <form action="{{ route('register') }}" method="POST">
+            <form action="{{ URL::to('/auth-register') }}" method="POST">
                 @csrf
                 <label for="chk" aria-hidden="true">Sign up</label>
-                @if (Session::has('register_message'))
+                @if (Session::has('message_register'))
                     <div class="alert alert-success">
-                        {{ Session::get('register_message') }}
+                        {{ Session::get('message_register') }}
                     </div>
                 @endif
 
@@ -33,14 +33,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <input type="tel" name="admin_phone" placeholder="Phone Number" required="">
                 <input type="password" name="admin_password" placeholder="Password" required="">
                 <button>Sign up</button>
-                <a href="{{ url('/login-auth') }}">Đăng nhập Auth</a>
             </form>
         </div>
         <div class="login">
-            <form action="{{ URL::to('/admin-dashboard') }}" method="post">
+            <form action="{{ URL::to('/login') }}" method="post">
                 <label for="chk" aria-hidden="true">Login</label>
-                @if (Session::has('login_message'))
-                    <span class="text-alert">{{ Session::get('login_message') }}</span>
+                @if (Session::has('message_login'))
+                    <span class="text-alert">{{ Session::get('message_login') }}</span>
                 @endif
                 {{ csrf_field() }}
                 <input type="email" name="admin_email" placeholder="Email" required="">

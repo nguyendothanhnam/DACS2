@@ -5,7 +5,7 @@
             <div class="swiper">
                 <div class="swiper-wrapper">
                     <!-- Slide with Images -->
-                    {{-- <div class="swiper-slide">
+                    <div class="swiper-slide">
                         <img src="https://sp-one.vn/Content/uploads/2024/08/z5774923877982_ff5b6b1d35813626f5a6ba78cbb56d08.jpg" alt="Image 1">
                     </div>
                     <div class="swiper-slide">
@@ -16,7 +16,23 @@
                     </div>
                     <div class="swiper-slide">
                         <img src="https://sp-one.vn/Content/uploads/2023/06/banner-ao-hoa_web.png" alt="Image 4">
-                    </div> --}}
+                    </div>
+                    {{-- @php
+                        $i = 0;
+                    @endphp
+                    @foreach ($slider as $key => $slide)
+                        @php
+                            $i++;
+                        @endphp
+                        <div class="item{{ $i == 1 ? 'active' : '' }}">
+                            <div class="col-sm-6">
+                                <p>{!! $slide->slider_desc !!}</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="public/uploads/slider/{{ $slide->slider_image }}" alt="">
+                            </div>
+                        </div>
+                    @endforeach --}}
                 </div>
                 <!-- Navigation buttons -->
                 <div class="swiper-button-next"></div>
@@ -26,18 +42,18 @@
             </div>
         </div>
         <div class='container'>
-        <div class="row g-0">
-            <div class="col-6 col-md-6">
-                <img src="https://sp-one.vn/Content/uploads/2024/04/IMG_9632.jpg" alt="Photo 2" class="img-fluid">
-            </div>
-            <div class="col-6 col-md-6">
-                <img src="https://sp-one.vn/Content/uploads/2024/04/IMG_9632.jpg" alt="Photo 3" class="img-fluid">
+            <div class="row g-0">
+                <div class="col-6 col-md-6">
+                    <img src="https://sp-one.vn/Content/uploads/2024/04/IMG_9632.jpg" alt="Photo 2" class="img-fluid">
+                </div>
+                <div class="col-6 col-md-6">
+                    <img src="https://sp-one.vn/Content/uploads/2024/04/IMG_9632.jpg" alt="Photo 3" class="img-fluid">
+                </div>
             </div>
         </div>
-        </div>
-        
 
-        
+
+
     </div>
-   
+
 </div>

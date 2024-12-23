@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\Coupon;
+use Illuminate\Support\Facades\Auth;
 
 class CouponController extends Controller
 {
     public function AuthLogin(){
-        $admin_id = Session::get('admin_id');
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
         if($admin_id){
             return Redirect::to('admin.dashboard');
         }else{

@@ -14,5 +14,8 @@ class Order extends Model
     protected $primaryKey ='order_id';
     protected $table ='tbl_order';
 
-    
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class, 'shipping_id', 'shipping_id'); // Kiểm tra tên khóa ngoại và bảng có chính xác không
+    }    
 }

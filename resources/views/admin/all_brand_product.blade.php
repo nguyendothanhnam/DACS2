@@ -5,7 +5,7 @@
             <div class="panel-heading">
                 Liệt kê thương hiệu sản phẩm
             </div>
-            <div class="row w3-res-tb">
+            {{-- <div class="row w3-res-tb">
                 <div class="col-sm-5 m-b-xs">
                     <select class="input-sm form-control w-sm inline v-middle">
                         <option value="0">Bulk action</option>
@@ -25,7 +25,7 @@
                         </span>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="table-responsive">
                 <table class="table table-striped b-t b-light">
                     <?php
@@ -37,11 +37,7 @@
                     ?>
                     <thead>
                         <tr>
-                            <th style="width:20px;">
-                                <label class="i-checks m-b-none">
-                                    <input type="checkbox"><i></i>
-                                </label>
-                            </th>
+                            <th>STT</th>
                             <th>Tên thương hiệu</th>
                             <th>Hiển thị</th>
                             <th>Thời gian</th>
@@ -51,8 +47,7 @@
                     <tbody>
                         @foreach ($all_brand_product as $key => $brand_pro)
                             <tr>
-                                <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label>
-                                </td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $brand_pro->brand_name }}</td>
                                 <td><span class="text-ellipsis">
                                 <?php

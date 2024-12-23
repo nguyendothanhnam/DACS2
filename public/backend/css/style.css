@@ -3169,3 +3169,13 @@ a.active.styling-edit{
 header.header.fixed-top.clearfix {
     background: #232121;;
 }
+.fa-eye-slash:before {
+    content: "\f165";
+    font-size: 28px;
+    color: red;
+}
+.fa-eye:before {
+    content: "\f165";
+    font-size: 28px;
+    color: green;
+}

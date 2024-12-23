@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
@@ -10,12 +11,12 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProductController extends Controller
 {
-    public function AuthLogin()
-    {
-        $admin_id = Session::get('admin_id');
-        if ($admin_id) {
+    public function AuthLogin(){
+        // $admin_id = Session::get('admin_id');
+        $admin_id = Auth::id();
+        if($admin_id){
             return Redirect::to('admin.dashboard');
-        } else {
+        }else{
             return Redirect::to('admin')->send();
         }
     }

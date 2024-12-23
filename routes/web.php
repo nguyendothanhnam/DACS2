@@ -12,7 +12,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\DeliveryController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthController;
 
 //Frontend
 Route::get('/trang-chu', [HomeController::class, 'showlayoutproduct']);
@@ -105,7 +107,7 @@ Route::get('/view-order/{order_code}', [OrderController::class, 'view_order']);
 Route::post('/update-order', [OrderController::class, 'update_order']);
 
 //Send email
-Route::get('send-mail', [HomeController::class,'send_mail']);
+Route::get('send-mail', [OrderController::class,'send_mail']);
 
 //Coupon
 Route::post('/check-coupon', [CartController::class, 'check_coupon']);
@@ -137,4 +139,23 @@ Route::post('/update-user-info', [UserController::class, 'update_user_info']);
 Route::get('/load-user-info', [UserController::class, 'load_user_info']);
 Route::post('/update-user-password', [UserController::class, 'update_user_password']);
 
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/add-users', [UserController::class, 'add_users']);
+Route::post('/store-users', [UserController::class, 'store_users']);
+Route::post('/assign-roles', [UserController::class, 'assign_roles']);
+
+//Slide banner
+Route::get('/manage-banner',[SliderController::class,'manage_banner']);
+Route::get('/add-slider',[SliderController::class,'add_slider']);
+Route::post('/insert-slider',[SliderController::class,'insert_slider']);
+Route::get('/unactive-slider/{slider_id}', [SliderController::class, 'unactive_slider']);
+Route::get('/active-slider/{slider_id}', [SliderController::class, 'active_slider']);
+Route::get('/delete-slider/{slider_id}', [SliderController::class, 'delete_slider']);
+
+//Authentication roles
+Route::post('/auth-register',[AuthController::class,'auth_register']);
+Route::post('/login',[AuthController::class,'login']);
+Route::get('/login-auth', [AuthController::class, 'login_auth']);
+Route::get('/register-auth', [AuthController::class, 'register_auth']);
+Route::get('/logout-auth', [AuthController::class, 'logout_auth']);
 

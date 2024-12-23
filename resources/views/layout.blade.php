@@ -73,7 +73,7 @@
 
     <script src="{{ asset('frontend/js/sweetalert.min.js') }}"></script>
     <link href="{{ asset('frontend/css/sweetalert.css') }}" rel="stylesheet">
-    
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('.add-to-cart').click(function() {
@@ -124,17 +124,31 @@
     </script>
     <script>
         $(document).ready(function() {
-            $(".choose").on('change', function() {
+            $('.choose').on('change', function() {
                 var action = $(this).attr('id');
                 var ma_id = $(this).val();
                 var _token = $('input[name="_token"]').val();
                 var result = '';
+                // if (['1','2','3','4','5','6','7','8','9'].includes(ma_id)) {
+                //     console.log('hello');
+                //     ma_id = '0' + ma_id.toString();
+                // }
 
-                if (action == 'city') {
-                    result = 'province';
-                } else {
-                    result = 'wards';
+                console.log(ma_id);
+                 
+                switch (action) {
+                    case 'city':
+                        result = 'province';
+                        break;
+                    case 'province':
+                        result = 'wards';
+                        break;
                 }
+                // if (action == 'city') {
+                //     result = 'province';
+                // } else {
+                //     result = 'wards';
+                // }
                 $.ajax({
                     url: '{{ url('/select-delivery-home') }}',
                     method: "POST",
@@ -153,10 +167,10 @@
     <script>
         $(document).ready(function() {
             $('.calculate_delivery').click(function() {
-                var matp = $('.city').val();
-                var maqh = $('.province').val();
-                var xaid = $('.wards').val();
-                console.log(matp, maqh, xaid);
+                var matp = $('#city').val();
+                var maqh = $('#province').val();
+                var xaid = $('#wards').val();
+                console.log("matp:", matp, "maqh:", maqh, "xaid:", xaid);
                 var _token = $('input[name="_token"]').val();
                 if (matp == '' && maqh == '' && xaid == '') {
                     alert('Bạn phải chọn đầy đủ thông tin');

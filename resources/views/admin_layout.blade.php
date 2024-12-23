@@ -55,10 +55,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <!-- user login dropdown start-->
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <img alt="" src="{{ asset('backend/image/2.png') }}">
+                            <img alt="" src="{{ asset('backend/image/admin.png') }}">
                             <span class="username">
                                 <?php
-                                $admin_name = Session::get('admin_name');
+                                // $admin_name = Session::get('admin_name');
+                                $admin_name = Auth::user()->admin_name;
 								if ($admin_name) {
 									echo $admin_name;
 								}
@@ -69,7 +70,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <ul class="dropdown-menu extended logout">
                             <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="{{ URL::to('/logout') }}"><i class="fa fa-key"></i> Log Out</a></li>
+                            <li><a href="{{ URL::to('/logout-auth') }}"><i class="fa fa-key"></i> Log Out</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -141,7 +142,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-dropbox"></i>
                                 <span>Sản phẩm</span>
                             </a>
                             <ul class="sub">
@@ -151,7 +152,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-caret-square-o-right"></i>
+                                <span>Slider Banner</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ URL::to('/add-slider') }}">Thêm slide</a></li>
+                                <li><a href="{{ URL::to('/manage-banner') }}">Liệt kê slide</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-newspaper-o"></i>
                                 <span>Quản lý trang</span>
                             </a>
                             <ul class="sub">
@@ -159,6 +170,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 <li><a href="{{ URL::to('/edit-aboutpage') }}">Giới thiệu</a></li>
                             </ul>
                         </li>
+                        @hasrole('admin')
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-user-plus"></i>
+                                <span>User</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ URL::to('/add-user') }}">Thêm user</a></li>
+                                <li><a href="{{ URL::to('/users') }}">Liệt kê user</a></li>
+                            </ul>
+                        </li>
+                        @endhasrole
+                        @impersonate
+                        <li class="sub-menu">
+                            <a href="{{ URL::to('/impersonate-destroy') }}">
+                                <i class="fa fa-user-times"></i>
+                                <span>Hủy trao quyền</span>
+                            </a>
+                        </li>
+                        @endimpersonate
                     </ul>
                 </div>
                 <!-- sidebar menu end-->

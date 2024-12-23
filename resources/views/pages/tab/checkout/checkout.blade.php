@@ -55,7 +55,7 @@
                             <label for="note" class="form-label">Phương thức thanh toán *</label>
 
                             <select name="payment_select"
-                                class="form-control input-sm m-bot15 choose province payment_select">
+                                class="form-control input-sm m-bot15 choose payment_select">
                                 <option value="0">Chuyển khoản</option>
                                 <option value="1">Thanh toán khi nhận hàng</option>
                             </select>
@@ -96,12 +96,12 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Chọn xã phường</label>
+                            <label for="exampleInputPassword2">Chọn xã phường</label>
                             <select name="wards" id="wards" class="form-control input-sm m-bot15 wards">
                                 <option value="">--- Chọn xã phường ---</option>
                             </select>
                         </div>
-                        <input type="button" value="Tính phí vận chuyển" name="calculate_order"
+                        <input style="margin-top: 10px" type="button" value="Tính phí vận chuyển" name="calculate_order"
                             class="btn btn-primary btn-sm calculate_delivery">
                     </form>
                 </div>
@@ -162,13 +162,13 @@
                                     @endforeach
 
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="3">
                                             <div class="total_area">
-                                                <ul>
-                                                    <li>Tổng tiền:
+                                                
+                                                    Tổng tiền:
                                                         <span>{{ number_format($total, 0, ',', '.') . ' VND' }}</span>
-                                                    </li>
-                                                    <li>Mã giảm:
+                                                   <br>
+                                                    Mã giảm:
                                                         @if (Session::get('coupon'))
                                                             @foreach (Session::get('coupon') as $key => $cou)
                                                                 @if ($cou['coupon_condition'] == 1)
@@ -201,20 +201,20 @@
                                                                 @endif
                                                             @endforeach
                                                         @endif
-                                                    </li>
+                                                    <br>
                                                     {{-- <li>Thành tiền:
                                                                 <span>{{ number_format($total, 0, ',', '.') . ' VND' }}</span>
                                                             </li> --}}
                                                     {{-- <li>Thuế<span></span></li> --}}
                                                     @if (Session::get('fee'))
-                                                        <li>
+                                                        
                                                             <a class="cart_quantity_delete"
                                                                 href="{{ URL::to('/del-fee/') }}">
                                                                 <i class="fa fa-trash-o"></i></a>
                                                             Phí vận chuyển
                                                             <span>{{ number_format(Session::get('fee'), 0, ',', '.') }}
                                                                 VND </span>
-                                                        </li>
+                                                       
                                                         <?php
                                                         $total_after_fee = $total + Session::get('fee');
                                                         ?>
@@ -232,20 +232,20 @@
                                                         }
                                                     @endphp
 
-                                                </ul>
+                                                
                                                 {{-- <a class="btn btn-default check_out" href="">Thanh toán</a> --}}
 
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
+                                        <td >
                                             <div class="d-flex justify-content-between mt-3">
                                                 <span>Tổng giá:</span>
                                                 
                                             </div>
                                         </td>
-                                        <td>
+                                        <td colspan="2">
                                             <span class="total-price">{{ number_format($total_after, 0, ',', '.') }} VND </span>
                                         </td>
                                     </tr>

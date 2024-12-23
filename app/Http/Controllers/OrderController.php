@@ -9,6 +9,7 @@ use App\Models\Shipping;
 use App\Models\Feeship;
 use App\Models\Customer;
 use App\Models\Coupon;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -48,9 +49,45 @@ class OrderController extends Controller
     }
 
     public function update_order(Request $request){
-        $data = $request->all();
-        $order = Order::find($data['order_id']);
+        // $data = $request->all();
+        // $order = Order::find($data['order_id']);
+        // $order->order_status = $data['order_status'];
+        // $order->save();
+        // Lấy dữ liệu từ request
+    $data = $request->all();
+    $order = Order::find($data['order_id']); // Tìm đơn hàng theo ID
+
+    if ($order) {
+        // Cập nhật trạng thái đơn hàng
         $order->order_status = $data['order_status'];
         $order->save();
+
+        // Gửi email nếu trạng thái mới là "Đang giao hàng"
+        if ($order->order_status == 2) {
+            // Lấy thông tin vận chuyển từ quan hệ
+            $shipping = $order->shipping; // Sử dụng quan hệ trong model
+
+            if ($shipping) {
+                $this->send_mail($shipping->shipping_email, $shipping->shipping_name);
+            }
+        }
+
+        return redirect()->back()->with('message', 'Cập nhật trạng thái đơn hàng thành công.');
+    }
+
+    return redirect()->back()->with('error', 'Không tìm thấy đơn hàng.');
+    }
+
+    public function send_mail($to_email, $to_name){
+        $data = [
+            "name" => $to_name,
+            "body" => "Đơn hàng của bạn hiện đang được giao. Xin cảm ơn bạn đã mua hàng tại cửa hàng của chúng tôi!"
+        ];
+    
+        Mail::send('pages.tab.mail.send_mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email)->subject("Thông báo giao hàng");
+            $message->from('namndt.23it@vku.udn.vn', 'LapWibu');
+        });
+        return redirect('/')->with('message','');
     }
 }
